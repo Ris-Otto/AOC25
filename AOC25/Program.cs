@@ -52,6 +52,13 @@ day1command.SetAction(parseResult =>
     day1.Run();
 });
 
+day2command.SetAction(parseResult =>
+{
+    var isTest = parseResult.GetValue(testOption);
+    var day2 = new Day2(isTest);
+    day2.Run();
+});
+
 var parseResult = rootCommand.Parse(args);
 Log.Logger = new LoggerConfiguration().WriteTo.Console()
     .MinimumLevel.ControlledBy(GetLogLevel(parseResult.GetValue(verbosityOption))).CreateLogger();

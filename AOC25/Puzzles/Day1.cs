@@ -1,4 +1,4 @@
-using System.Numerics;
+using System.Diagnostics;
 using Serilog;
 
 namespace AOC25.Puzzles;
@@ -7,6 +7,7 @@ public class Day1
 {
     private readonly string _path;
     private const int InitialPointer = 50;
+    private readonly Stopwatch _stopwatch = new ();
     public Day1(bool test)
     {
         if (test)
@@ -24,6 +25,7 @@ public class Day1
         int p = InitialPointer;
         var zeroes1 = 0;
         var zeroes2 = 0;
+        _stopwatch.Start();
         foreach (var line in lines)
         {
             var command = ParseCommand(line);
@@ -37,11 +39,11 @@ public class Day1
                 zeroes1++;
             }
             p = temp;
-            
         }
+        _stopwatch.Stop();
         Log.Logger.Information("Password: {zeroes}", zeroes1);
         Log.Logger.Information("Password2: {zeroes2}", zeroes2);
-        
+        Log.Logger.Information("Day2: {ms ms", _stopwatch.Elapsed.TotalMilliseconds);
     }
 
     private static int ParseCommand(string line)
