@@ -43,7 +43,7 @@ public class Day1
         _stopwatch.Stop();
         Log.Logger.Information("Password: {zeroes}", zeroes1);
         Log.Logger.Information("Password2: {zeroes2}", zeroes2);
-        Log.Logger.Information("Day2: {ms ms", _stopwatch.Elapsed.TotalMilliseconds);
+        Log.Logger.Information("Day2: {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
     }
 
     private static int ParseCommand(string line)

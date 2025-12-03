@@ -21,24 +21,15 @@ public class Day2
     public void Run()
     {
         var lines = File.ReadAllLines(_path);
-        long res = 0;
-        long res2 = 0;
         _stopwatch.Start();
-        foreach (var line in lines)
-        {
-            var split = line.Split(',');
-            foreach (var idRange in split)
-            {
-                res += PartOne(idRange);
-                res2 += PartTwo(idRange);
-
-            }
-        }
-        
+        var res = lines.SelectMany(line => line.Split(',')).Sum(PartOne);
         _stopwatch.Stop();
-        Log.Logger.Information("Result: {res}", res);
-        Log.Logger.Information("Result2: {res}", res2);
-        Log.Logger.Information("Day2: {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
+        Log.Logger.Information("Part1: {res}", res);
+        Log.Logger.Information("Executed in {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
+        _stopwatch.Restart();
+        var res2 = lines.SelectMany(line => line.Split(',')).Sum(PartTwo);
+        Log.Logger.Information("Part2: {res}", res2);
+        Log.Logger.Information("Executed in {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
     }
 
     private static long PartOne(string line)
