@@ -22,6 +22,7 @@ verbosityOption.AcceptOnlyFromAmong(
 
 var day1command = new Command("day1");
 var day2command = new Command("day2");
+var day3command = new Command("day3");
 
 var testOption = new Option<bool>("--test", "-t");
 
@@ -31,8 +32,12 @@ day1command.Add(verbosityOption);
 day2command.Add(testOption);
 day2command.Add(verbosityOption);
 
+day3command.Add(testOption);
+day3command.Add(verbosityOption);
+
 rootCommand.Add(day1command);
 rootCommand.Add(day2command);
+rootCommand.Add(day3command);
 
 rootCommand.Add(testOption);
 rootCommand.Add(verbosityOption);
@@ -57,6 +62,13 @@ day2command.SetAction(parseResult =>
     var isTest = parseResult.GetValue(testOption);
     var day2 = new Day2(isTest);
     day2.Run();
+});
+
+day3command.SetAction(parseResult =>
+{
+    var isTest = parseResult.GetValue(testOption);
+    var day3 = new Day3(isTest);
+    day3.Run();
 });
 
 var parseResult = rootCommand.Parse(args);
