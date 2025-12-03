@@ -70,10 +70,3 @@ public class Day3
         return long.Parse(ret.ToArray());
     }
 }
-
-/*
-811111111111119
-234234234234278
-818181911112111
- * 
- */

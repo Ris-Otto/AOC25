@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.CommandLine;
+using System.Diagnostics;
 using AOC25.Puzzles;
 using Serilog;
 using Serilog.Core;
@@ -80,8 +81,17 @@ await parseResult.InvokeAsync();
 
 Task RunAll(bool test)
 {
+    var sw = new Stopwatch();
+    
     var day1 = new Day1(test);
+    var day2 = new Day2(test);
+    var day3 = new Day3(test);
+    sw.Start();
     day1.Run();
+    day2.Run();
+    day3.Run();
+    sw.Stop();
+    Log.Logger.Information("RunAll executed in {ms} ms", sw.ElapsedMilliseconds);
     return Task.CompletedTask;
 }
 

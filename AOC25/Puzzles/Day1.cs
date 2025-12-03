@@ -28,22 +28,25 @@ public class Day1
         _stopwatch.Start();
         foreach (var line in lines)
         {
-            var command = ParseCommand(line);
-            var temp = CurrentPointer(p, command, out var hitZero);
-            zeroes2 += hitZero;
-
-            Log.Logger.Debug("Pointer moved from {last} to {current} by command {command} and moved past zero {zero} times"
-                , p, temp, line, hitZero);
-            if (temp % 100 == 0)
+            p = CurrentPointer(p, ParseCommand(line), out _);
+            if (p % 100 == 0)
             {
                 zeroes1++;
             }
-            p = temp;
         }
         _stopwatch.Stop();
-        Log.Logger.Information("Password: {zeroes}", zeroes1);
-        Log.Logger.Information("Password2: {zeroes2}", zeroes2);
-        Log.Logger.Information("Day2: {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
+        Log.Logger.Information("Part1: {zeroes}", zeroes1);
+        Log.Logger.Information("Executed in {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
+        p = InitialPointer;
+        _stopwatch.Restart();
+        foreach (var line in lines)
+        {
+            p = CurrentPointer(p, ParseCommand(line), out var hitZero);
+            zeroes2 += hitZero;
+        }
+        _stopwatch.Stop();
+        Log.Logger.Information("Part2: {zeroes2}", zeroes2);
+        Log.Logger.Information("Executed in {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
     }
 
     private static int ParseCommand(string line)
