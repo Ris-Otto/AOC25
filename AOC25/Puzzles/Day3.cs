@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using Serilog;
-using Serilog.Core;
 
 namespace AOC25.Puzzles;
 
@@ -33,7 +32,7 @@ public class Day3
         
         _stopwatch.Stop();
         Log.Logger.Information("Part 1: {result}", part1);
-        Log.Logger.Information("Executed in {ms} ms", _stopwatch.ElapsedMilliseconds);
+        Log.Logger.Information("Executed in {ms} \u03BCs", _stopwatch.Elapsed.Microseconds);
         _stopwatch.Restart();
         foreach (var line in lines)
         {
@@ -41,7 +40,7 @@ public class Day3
         }
         _stopwatch.Stop();
         Log.Logger.Information("Part 2: {result}", part2);
-        Log.Logger.Information("Executed in {ms} ms", _stopwatch.ElapsedMilliseconds);
+        Log.Logger.Information("Executed in {ms} \u03BCs", _stopwatch.Elapsed.Microseconds);
     }
     
     private static long MaxJoltageNBatteries(string line, int nBatteries)
