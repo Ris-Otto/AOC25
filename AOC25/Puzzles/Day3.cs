@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Serilog;
+using Serilog.Events;
 
 namespace AOC25.Puzzles;
 
@@ -58,11 +59,11 @@ public class Day3
                 .Take(lastIndex - start + 1)
                 .Select((c, idx) => new { c, idx = start + idx })
                 .MaxBy(x => x.c);
-            Log.Logger.Verbose("Best: {@best}", best);
-            if (best is null)
+            if(Log.IsEnabled(LogEventLevel.Verbose))
             {
-                throw new ArgumentException("lol");
+                Log.Logger.Verbose("Best: {@best}", best);
             }
+            ArgumentNullException.ThrowIfNull(best);
             ret.Add(best.c);
             start = best.idx + 1;
         }

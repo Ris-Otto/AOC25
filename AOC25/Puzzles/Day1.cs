@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Serilog;
+using Serilog.Events;
 
 namespace AOC25.Puzzles;
 
@@ -73,7 +74,10 @@ public class Day1
         hitZero += hundreds + thousands * 10;
         
         int result = (cSign *cte + lte) * 10 + cSign * co + lo;
-        Log.Logger.Debug("Result: {result}", result);
+        if(Log.Logger.IsEnabled(LogEventLevel.Debug))
+        {
+            Log.Logger.Debug("Result: {result}", result);
+        }
         if (result > 99 || (result <= 0 && last != 0))
         {
             hitZero++;

@@ -24,6 +24,7 @@ verbosityOption.AcceptOnlyFromAmong(
 var day1command = new Command("day1");
 var day2command = new Command("day2");
 var day3command = new Command("day3");
+var day4command = new Command("day4");
 
 var testOption = new Option<bool>("--test", "-t");
 
@@ -36,9 +37,13 @@ day2command.Add(verbosityOption);
 day3command.Add(testOption);
 day3command.Add(verbosityOption);
 
+day4command.Add(testOption);
+day4command.Add(verbosityOption);
+
 rootCommand.Add(day1command);
 rootCommand.Add(day2command);
 rootCommand.Add(day3command);
+rootCommand.Add(day4command);
 
 rootCommand.Add(testOption);
 rootCommand.Add(verbosityOption);
@@ -72,24 +77,30 @@ day3command.SetAction(parseResult =>
     day3.Run();
 });
 
+day4command.SetAction(parseResult =>
+{
+    var isTest = parseResult.GetValue(testOption);
+    new Day4(isTest).Run();
+});
+
 var parseResult = rootCommand.Parse(args);
 Log.Logger = new LoggerConfiguration().WriteTo.Console()
     .MinimumLevel.ControlledBy(GetLogLevel(parseResult.GetValue(verbosityOption))).CreateLogger();
         
 await parseResult.InvokeAsync();
+return;
 
 
 Task RunAll(bool test)
 {
     var sw = new Stopwatch();
     
-    var day1 = new Day1(test);
-    var day2 = new Day2(test);
-    var day3 = new Day3(test);
+    
     sw.Start();
-    day1.Run();
-    day2.Run();
-    day3.Run();
+    new Day1(test).Run();
+    new Day2(test).Run();
+    new Day3(test).Run();
+    new Day4(test).Run();
     sw.Stop();
     Log.Logger.Information("RunAll executed in {ms} ms", sw.ElapsedMilliseconds);
     return Task.CompletedTask;
