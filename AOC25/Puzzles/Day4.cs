@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Text;
 using Serilog;
 using Serilog.Events;
+using static System.Convert;
 
 namespace AOC25.Puzzles;
 
@@ -112,14 +113,15 @@ public class Day4
                     diagrb = lineb?[x + 1]??'.';
                     r = lines[y][x +1];
                 }
-                int adjs = Convert.ToInt32(below == At)
-                          + Convert.ToInt32(above == At)
-                          + Convert.ToInt32(diagla == At)
-                          + Convert.ToInt32(diagra == At)
-                          + Convert.ToInt32(diaglb == At)
-                          + Convert.ToInt32(diagrb == At)
-                          + Convert.ToInt32(l == At)
-                          + Convert.ToInt32(r == At);
+                
+                int adjs = ToInt32(below == At)
+                           + ToInt32(above == At)
+                           + ToInt32(diagla == At)
+                           + ToInt32(diagra == At)
+                           + ToInt32(diaglb == At)
+                           + ToInt32(diagrb == At)
+                           + ToInt32(l == At)
+                           + ToInt32(r == At);
                 if(Log.Logger.IsEnabled(LogEventLevel.Verbose))
                 {
                     Log.Logger.Verbose("\n{0}{1}{2}\n{3}{4}{5}\n{6}{7}{8}", diagla, above, diagra, l, c, r, diaglb, below,
