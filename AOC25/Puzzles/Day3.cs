@@ -21,6 +21,7 @@ public class Day3
 
     public void Run()
     {
+        Log.Logger.Information("***************** Day3 *****************");
         var lines = File.ReadAllLines(_path).AsSpan();
         long part1 = 0;
         long part2 = 0;
@@ -33,7 +34,7 @@ public class Day3
         
         _stopwatch.Stop();
         Log.Logger.Information("Part 1: {result}", part1);
-        Log.Logger.Information("Executed in {ms} \u03BCs", _stopwatch.Elapsed.Microseconds);
+        Log.Logger.Information("Executed in {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
         _stopwatch.Restart();
         foreach (var line in lines)
         {
@@ -41,7 +42,7 @@ public class Day3
         }
         _stopwatch.Stop();
         Log.Logger.Information("Part 2: {result}", part2);
-        Log.Logger.Information("Executed in {ms} \u03BCs", _stopwatch.Elapsed.Microseconds);
+        Log.Logger.Information("Executed in {ms} ms", _stopwatch.Elapsed.TotalMilliseconds);
     }
     
     private static long MaxJoltageNBatteries(string line, int nBatteries)

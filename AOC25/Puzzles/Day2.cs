@@ -20,6 +20,7 @@ public class Day2
 
     public void Run()
     {
+        Log.Logger.Information("***************** Day2 *****************");
         var lines = File.ReadAllLines(_path);
         _stopwatch.Start();
         var res = lines.SelectMany(line => line.Split(',')).Sum(PartOne);

@@ -23,6 +23,7 @@ public class Day4
 
     public void Run()
     {
+        Log.Logger.Information("***************** Day4 *****************");
         var lines =  File.ReadAllLines(_path);
         long result = 0;
 

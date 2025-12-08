@@ -22,6 +22,7 @@ public class Day1
     
     public void Run()
     {
+        Log.Logger.Information("***************** Day1 *****************");
         var lines =  File.ReadAllLines(_path);
         int p = InitialPointer;
         var zeroes1 = 0;
